@@ -49,32 +49,20 @@ const express = require('express')
 
 // Variable for express routes
 const router = express.Router()
+const postController = require('../controllers/postController.js')
 
 // Routes
-router.get('/index', (req, res) => {
-  res.json(posts);
-})
+router.get('/index', postController.index)
 
-router.get('/show/:id', (req, res) => {
-  const postId = req.params.id - 1
-  res.json(posts[postId]);
-})
+router.get('/show/:id', postController.show)
 
-router.post('/', (req, res) => {
-    res.send(`Store a new post`);
-})
+router.post('/', postController.store)
 
-router.put('/:id', (req, res) => {
-    res.send(`Edit a post`);
-})
+router.put('/:id', postController.update)
 
-router.patch('/:id', (req, res) => {
-    res.send(`Edit part of a post`);
-})
+router.patch('/:id', postController.modify)
 
-router.delete('/:id', (req, res) => {
-    res.send(`Delete a post`);
-})
+router.delete('/:id', postController.destroy)
 
 // It exports all posts objects
 module.exports = posts;
