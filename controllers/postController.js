@@ -22,7 +22,15 @@ function modify(req, res) {
 }
 
 function destroy(req, res) {
-    res.send(`Delete a post`);
+    postId = req.params.id - 1
+
+    posts.splice(postId, 1)
+
+    console.log(posts);
+    
+    res.status(204).json({
+        message: 'Post deleted' 
+    })
 }
 
 module.exports = {
