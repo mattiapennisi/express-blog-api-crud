@@ -1,4 +1,4 @@
-const posts = require('../routers/posts.js')
+const posts = require('../data/posts.js')
 
 function index(req, res) {
     res.json(posts);
@@ -17,11 +17,11 @@ function update(req, res) {
     res.send(`Edit a post`);
 }
 
-function modify (req, res) {
+function modify(req, res) {
     res.send(`Edit part of a post`);
 }
 
-function destroy (req, res) {
+function destroy(req, res) {
     res.send(`Delete a post`);
 }
 

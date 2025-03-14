@@ -44,28 +44,4 @@ const posts = [
   },
 ];
 
-// Variable to import Express
-const express = require('express')
-
-// Variable for express routes
-const router = express.Router()
-const postController = require('../controllers/postController.js')
-
-// Routes
-router.get('/index', postController.index)
-
-router.get('/show/:id', postController.show)
-
-router.post('/', postController.store)
-
-router.put('/:id', postController.update)
-
-router.patch('/:id', postController.modify)
-
-router.delete('/:id', postController.destroy)
-
-// It exports all posts objects
-module.exports = posts;
-
-// It exports all routes
-module.exports = router;
+module.exports = posts
