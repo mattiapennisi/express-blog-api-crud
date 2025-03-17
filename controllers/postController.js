@@ -28,7 +28,7 @@ function show(req, res) {
         })
     }
 
-    res.json(post)
+    res.json(post)  
 }
 
 function store(req, res) {
@@ -44,15 +44,28 @@ function modify(req, res) {
 }
 
 function destroy(req, res) {
-    postSlug = req.params.slug - 1
 
-    posts.splice(postSlug, 1)
+    const postSlug = req.params.slug
 
-    console.log(posts);
-    
-    res.status(204).json({
-        message: 'Post deleted' 
-    })
+    const post = posts.find(post => post.slug === postSlug)
+
+    let postsFiltered = posts
+
+    if (!post) {
+
+        return res.status(404).json({
+            error: '404 not found',
+            message: 'Post not found'
+        })
+    } 
+
+    postsFiltered.splice(post, 1)
+
+    console.log(postsFiltered);
+
+    res.status(204).json(postsFiltered)
+
+    // res.send(postsFiltered)
 }
 
 module.exports = {
