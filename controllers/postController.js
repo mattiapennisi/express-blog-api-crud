@@ -32,9 +32,20 @@ function show(req, res) {
 }
 
 function store(req, res) {
-    console.log(req.body);
 
-    res.send(`Store a new post`);
+    console.log(req.body)
+
+    const newPost = {
+        title: req.body.title,
+        slug: req.body.slug,
+        content: req.body.content,
+        image: req.body.image,
+        tags: req.body.tags
+    }
+
+    posts.push(newPost)
+    
+    return res.status(201).json(posts)
 }
 
 function update(req, res) {
