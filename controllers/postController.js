@@ -1,12 +1,34 @@
 const posts = require('../data/posts.js')
 
 function index(req, res) {
-    res.json(posts);
+
+    let postsToFilter = posts
+
+    if (req.query.tags) {
+        console.log('Posts filtered');
+        
+        postsToFilter = posts.filter(post => post.tags.includes(req.query.tags))
+    }
+
+    res.json(postsToFilter);
 }
 
 function show(req, res) {
-    const postId = req.params.id - 1
-    res.json(posts[postId]);
+
+    const postSlug = req.params.slug
+
+    const post = posts.find(post => post.slug === postSlug)
+
+    console.log(post);
+
+    if (!post) {
+        return res.status(404).json({
+            error: '404 not found',
+            message: 'Post not found'
+        })
+    }
+
+    res.json(post)
 }
 
 function store(req, res) {
@@ -22,9 +44,9 @@ function modify(req, res) {
 }
 
 function destroy(req, res) {
-    postId = req.params.id - 1
+    postSlug = req.params.slug - 1
 
-    posts.splice(postId, 1)
+    posts.splice(postSlug, 1)
 
     console.log(posts);
     
