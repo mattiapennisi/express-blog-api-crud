@@ -35,9 +35,11 @@ function store(req, res) {
 
     console.log(req.body)
 
+
+
     const newPost = {
         title: req.body.title,
-        slug: req.body.slug,
+        slug: req.body.title.replaceAll(' ', '-').toLowerCase(),
         content: req.body.content,
         image: req.body.image,
         tags: req.body.tags
