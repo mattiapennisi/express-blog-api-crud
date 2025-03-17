@@ -9,5 +9,8 @@ app.listen(port, () => {
     console.log('Server is running');
 })
 
+// It adds body parser to read body request
+app.use(express.json())
+
 // It sets the routes from module imported
 app.use('/posts', postsRouter)

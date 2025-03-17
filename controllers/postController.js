@@ -32,6 +32,8 @@ function show(req, res) {
 }
 
 function store(req, res) {
+    console.log(req.body);
+
     res.send(`Store a new post`);
 }
 
