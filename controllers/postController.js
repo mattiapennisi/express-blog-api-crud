@@ -70,7 +70,24 @@ function update(req, res) {
 }
 
 function modify(req, res) {
-    res.send(`Edit part of a post`);
+    const postSlug = req.params.slug
+
+    const post = posts.find(post => post.slug === postSlug)
+
+    if (!post) {
+        return res.status(404).json({
+            error: '404 not found',
+            message: 'post not found'
+        })
+    }
+
+    post.title = req.body.title?req.body.title:post.title
+    post.slug = req.body.slug?req.body.slug:post.slug
+    post.content = req.body.content?req.body.content:post.content
+    post.image = req.body.image?req.body.image:post.image
+    post.tags = req.body.tags?req.body.tags:post.tags
+
+    return res.json(posts)
 }
 
 function destroy(req, res) {
