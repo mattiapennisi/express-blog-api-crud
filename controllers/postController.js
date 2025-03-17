@@ -49,7 +49,24 @@ function store(req, res) {
 }
 
 function update(req, res) {
-    res.send(`Edit a post`);
+    const postSlug = req.params.slug
+
+    const post = posts.find(post => post.slug === postSlug)
+
+    if (!post) {
+        return res.status(404).json({
+            error: '404 not found',
+            message: 'post not found'
+        })
+    }
+
+    post.title = req.body.title
+    post.slug = req.body.slug
+    post.content = req.body.content
+    post.image = req.body.image
+    post.tags = req.body.tags
+
+    return res.json(posts)
 }
 
 function modify(req, res) {
