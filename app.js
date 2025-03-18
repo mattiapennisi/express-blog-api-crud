@@ -25,5 +25,5 @@ app.get('/', (req, res) => {
 })
 
 // Errors handlers
-app.use('/', error500)
-app.use('/', error404)
+app.use(error500)
+app.use(error404)
