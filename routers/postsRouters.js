@@ -1,7 +1,7 @@
 // Variable to import Express
 const express = require('express')
 
-// Variable for express routes
+// Routes variables
 const router = express.Router()
 const postController = require('../controllers/postController.js')
 
@@ -18,5 +18,5 @@ router.patch('/:slug', postController.modify)
 
 router.delete('/:slug', postController.destroy)
 
-// It exports all routes
-module.exports = router;
+// Export
+module.exports = router
